@@ -880,12 +880,12 @@ main (int argc, char *argv[])
                     fprintf (stderr, "Creating %s symlink to %s for compatibility\n", metainfo_id, appdata_id);
                     int res = symlink(appdata_id, metainfo_path);
                     if(res)
-                        fprintf (stderr, "WARNING: Could not create symlink %s\n", metainfo_path);
+                        fprintf (stderr, "WARNING: Could not create symlink %s: %s\n", metainfo_path, strerror(errno));
                 } else if (metainfo_exists && ! appdata_exists) {
                     fprintf (stderr, "Creating %s symlink to %s for compatibility\n", appdata_id, metainfo_id);
                     int res = symlink(metainfo_id, appdata_path);
                     if(res)
-                        fprintf (stderr, "WARNING: Could not create symlink %s\n", appdata_path);
+                        fprintf (stderr, "WARNING: Could not create symlink %s: %s\n", appdata_path, strerror(errno));
                 }
                 
                 fprintf (stderr, "AppStream upstream metadata found in usr/share/metainfo/%s\n", (metainfo_exists ? metainfo_id : appdata_id));
